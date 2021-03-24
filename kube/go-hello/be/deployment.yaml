@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gobackend
+spec:
+  selector:
+    matchLabels:
+      app: gohello
+      tier: backend
+      track: stable
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: gohello
+        tier: backend
+        track: stable
+    spec:
+      containers:
+        - name: gohello
+          image: "gcr.io/google-samples/hello-go-gke:1.0"
+          ports:
+            - name: http
+              containerPort: 80
